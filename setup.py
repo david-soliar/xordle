@@ -4,7 +4,7 @@ setup(
     name="xordle_solver",
     version="1.0.0",
     packages=find_packages(),
-    python_requires=">=3.10",
+    python_requires=">=3.12",
     author="David Soliar",
     author_email="dav.soliar@gmail.com",
     description="xordle",
