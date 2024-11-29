@@ -4,7 +4,7 @@ xordle is a Python package that provides tools to solve and interact with the Xo
 
 ## Installation
 
-To install xordle locally for testing and development, use the following command in your terminal
+To install xordle locally for testing or development, use the following command in your terminal
 (make sure you're in the root of the project directory):
 
 ```bash
