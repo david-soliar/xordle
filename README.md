@@ -61,7 +61,7 @@ This demo runs a configurable number of attempts (default is 1000) and logs the 
     Example with offset and custom number of games:
 
     ```bash
-    python demos/demo02.py --offset 100 --first_n_games 500
+    python demos/demo02.py --offset 100 --games 500
     ```
 
 ### 4. `demo03.py` - Running xorlde solver in CLI Normal Mode
@@ -87,7 +87,7 @@ This demo runs the solver in CLI mode, where you can play the Xordle in hard mod
     ```
 
 ### 5. `demo05.py` - Testing one attempt with given clue and two words to guess
-This demo is similar to `demo01.py` but only tests a single attempt with a given first word and two guessed words.
+This demo is similar to `demo01.py` but only tests a single attempt with a given first word and two words to guess.
 
 #### How to Run:
 
