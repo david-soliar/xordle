@@ -15,6 +15,9 @@ class XordleSolver():
 
         self.status = Status.IN_PROGRESS
 
+        self.already_guessed = list()
+        self.already_guessed_colors = list()
+
     def load_initial_word(self, word):
         self.word = word
 
@@ -57,6 +60,8 @@ class XordleSolver():
                 else:
                     self.xordle_player.process_guess(self.word, color, self.guess_count, self.guessed, self.index_of_guessed_word)
 
+            self.already_guessed.append(self.word)
+            self.already_guessed_colors.append(color)
             self.index_of_guessed_word = self.xordle_player.guess_word_index(self.guess_count, self.guessed)
             self.word = self.xordle_player.words[self.index_of_guessed_word].word
 
@@ -66,6 +71,9 @@ class XordleSolver():
 
         self.xordle_player.process_guess(self.word, color, self.guess_count, self.guessed, self.index_of_guessed_word)
 
+        self.already_guessed.append(self.word)
+        self.already_guessed_colors.append(color)
+    
         self.index_of_guessed_word = self.xordle_player.guess_word_index(self.guess_count, self.guessed)
         self.word = self.xordle_player.words[self.index_of_guessed_word].word
 
