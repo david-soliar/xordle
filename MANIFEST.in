@@ -1,0 +1,2 @@
+include xordle/data/words/*
+include xordle/data/log/*

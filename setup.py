@@ -10,5 +10,9 @@ setup(
     description="xordle",
     long_description=open("README.md").read(),
     long_description_content_type="text/markdown",
-    url="https://github.com/david-soliar/xordle"
+    url="https://github.com/david-soliar/xordle",
+    include_package_data=True,
+    package_data={
+        'xordle': ['data/*'],
+    },
 )

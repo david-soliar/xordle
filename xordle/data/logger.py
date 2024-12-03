@@ -7,7 +7,7 @@ class XordleLogger:
     def __init__(self, enable_logging=True):
         self.enable_logging = enable_logging
         if enable_logging:
-            self.LOG_DIR = Path(__file__).parent.parent.parent.joinpath("log")
+            self.LOG_DIR = Path(__file__).parent.joinpath("log")
             self.LOG_FILE_PATH = self.LOG_DIR.joinpath("xordle.log")
 
             self.logger = logging.getLogger("xordle_logger")

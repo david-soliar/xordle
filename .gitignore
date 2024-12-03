@@ -1,4 +1,4 @@
-log/xordle.log
+xordle/data/log/xordle.log
 log/not_guessed.txt
 log/all_games.txt
 xordle/data/data.pkl

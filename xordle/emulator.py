@@ -34,6 +34,7 @@ class XordleEmulator(EmulatorData):
         self.status = Status.NONE
         self.huh = False
         self.already_guessed = list()
+        self.already_guessed_colors = list()
 
     def _exceeded_max_guesses(self):
         return self._current_guess > self.MAX_GUESSES
@@ -47,6 +48,7 @@ class XordleEmulator(EmulatorData):
         color = self._calculate_color(self.clue_word)
         self.huh = (color == "22222" and (self.clue_word != self.emulator_word1 and self.clue_word != self.emulator_word2))
         self.already_guessed.append(self.clue_word)
+        self.already_guessed_colors.append(color)
         if self.clue_word == self.emulator_word1 or self.clue_word == self.emulator_word2:
             self._guessed += 1
         return (self.clue_word, color)
@@ -78,10 +80,12 @@ class XordleEmulator(EmulatorData):
             color = self._calculate_color(word)
             if color == "22222":
                 self.huh = True
+            self.already_guessed_colors.append(color)
             return color
 
         self.status = Status.IN_PROGRESS
         if self.emulator_word1 == word or self.emulator_word2 == word:
+            self.already_guessed_colors.append("22222")
             if self._guessed == 0:
                 if self.emulator_word1 == word:
                     self.emulator_word1 = None
@@ -95,7 +99,6 @@ class XordleEmulator(EmulatorData):
                 self._guessed += 1
                 self.already_guessed.append(word)
                 self._current_guess += 1
-
                 return "22222"
             else:
                 self.status = Status.WIN
@@ -109,7 +112,8 @@ class XordleEmulator(EmulatorData):
 
         self.already_guessed.append(word)
         self._current_guess += 1
-
+        self.already_guessed_colors.append(color)
+        
         return color
 
     def _calculate_color(self, word):
