@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 from string import ascii_lowercase
+import pathlib
 
 from . import data_manipulator
 from .logger import XordleLogger
@@ -26,6 +27,21 @@ class Data:
     def __iter__(self):
         yield from self.words
 
+class EmulatorData:
+    __slots__ = ["words", "top", "logger", "real_xordle_games"]
+
+    def __init__(self, enable_logging):
+        self.words = data_manipulator.load_words()
+
+        self.top = len(self.words) - 1
+
+        self.logger = XordleLogger(enable_logging=enable_logging)
+
+        with pathlib.Path(__file__).parent.joinpath("xordle.org.txt").open(mode="r") as file:
+            self.real_xordle_games = [line.split() for line in file.readlines()]
+
+    def __iter__(self):
+        yield from self.words
 
 @dataclass
 class Color:

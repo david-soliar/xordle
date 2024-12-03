@@ -1,16 +1,22 @@
 import random
+import pathlib
 
-from .data.data import Data
+from .data.data import EmulatorData
 from .status import Status
 
 
-class XordleEmulator(Data):
-    def __init__(self, words=None, clue_word=None, enable_logging=False):
+class XordleEmulator(EmulatorData):
+    def __init__(self, xordle_index=None, words=None, clue_word=None, enable_logging=False):
         super().__init__(enable_logging=enable_logging)
+        
+        if isinstance(xordle_index, int):
+            xordle_index = xordle_index % 40000
+            self.clue_word, self.emulator_word1, self.emulator_word2 = self.real_xordle_games[xordle_index]
 
-        if words and len(words) == 2 and not bool(set(words[0]) & set(words[1])):
+        elif words and len(words) == 2 and not bool(set(words[0]) & set(words[1])):
             self.emulator_word1 = words[0]
             self.emulator_word2 = words[1]
+            self.clue_word = clue_word
 
         else:
             if words:
@@ -20,8 +26,8 @@ class XordleEmulator(Data):
             self.emulator_word2 = self.words[random.randint(0, self.top)].word
             while bool(set(self.emulator_word1) & set(self.emulator_word2)):
                 self.emulator_word2 = self.words[random.randint(0, self.top)].word
+            self.clue_word = self.words[random.randint(0, self.top)].word
 
-        self.clue_word = clue_word
         self.MAX_GUESSES = 8
         self._current_guess = 0
         self._guessed = 0
@@ -37,8 +43,6 @@ class XordleEmulator(Data):
             return None, None
 
         self.status = Status.IN_PROGRESS
-        if not self.clue_word:
-            self.clue_word = self.words[random.randint(0, self.top)].word
 
         color = self._calculate_color(self.clue_word)
         self.huh = (color == "22222" and (self.clue_word != self.emulator_word1 and self.clue_word != self.emulator_word2))

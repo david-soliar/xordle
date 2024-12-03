@@ -19,13 +19,12 @@ def parse_arguments():
     return parser.parse_args()
 
 
-def main(all_data, offset, games):
+def main(offset, games):
     bad = 0
     print("MESSAGE xclue word1 word2\n")
 
-    for index, line in enumerate(all_data[offset:offset + games], start=1):
-        line = line.split()
-        emulator = XordleEmulator(clue_word=line[0], words=line[1:])
+    for index in range(1, games + 1):
+        emulator = XordleEmulator(xordle_index=offset+index-1)
         solver = XordleSolver()
 
         clue_word, color = emulator.start()
@@ -64,14 +63,11 @@ def main(all_data, offset, games):
 if __name__ == "__main__":
     args = parse_arguments()
 
-    with open("xordle.org.txt", "r") as file:
-        all_data = file.readlines()
-    
     if args.games <= 0 or args.offset < 0:
         raise ValueError("arguments should be numbers greater than or equal to 0")
 
     else:
         start_time = time.time()
-        result = main(all_data, args.offset, args.games)
+        result = main(args.offset, args.games)
         print(f"\nTest took: {time.time() - start_time:.2f} seconds")
         print(result)
