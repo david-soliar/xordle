@@ -20,6 +20,7 @@ class XordleSolver():
 
     def load_initial_word(self, word):
         self.word = word
+        self.already_guessed.append(self.word)
 
     def load_color(self, color, huh):
         if self.guess_count > 8 or self.status != Status.IN_PROGRESS:
@@ -27,6 +28,7 @@ class XordleSolver():
 
         if (self.guess_count == 8) and color != "22222":
             self.status = Status.LOSS
+            self.already_guessed_colors.append(color)
             self.xordle_player.logger.log_print("LOSS"*10)
             self.xordle_player.log_exec_time()
             self.xordle_player.process_guess(self.word, color, self.guess_count, self.guessed, self.index_of_guessed_word)
@@ -35,6 +37,7 @@ class XordleSolver():
         if color == "22222":
             if not huh and self.guessed == 1:
                 self.status = Status.WIN
+                self.already_guessed_colors.append(color)
                 self.xordle_player.logger.log_print("WIN"*10)
                 self.xordle_player.log_exec_time()
                 return None
@@ -53,6 +56,7 @@ class XordleSolver():
                 self.xordle_player.logger.log_print("HUH")
                 if self.guess_count == 8:
                     self.status = Status.LOSS
+                    self.already_guessed_colors.append(color)
                     self.xordle_player.logger.log_print("LOSS"*10)
                     self.xordle_player.log_exec_time()
                     self.xordle_player.process_guess(self.word, color, self.guess_count, self.guessed, self.index_of_guessed_word)
@@ -60,22 +64,21 @@ class XordleSolver():
                 else:
                     self.xordle_player.process_guess(self.word, color, self.guess_count, self.guessed, self.index_of_guessed_word)
 
-            self.already_guessed.append(self.word)
-            self.already_guessed_colors.append(color)
             self.index_of_guessed_word = self.xordle_player.guess_word_index(self.guess_count, self.guessed)
             self.word = self.xordle_player.words[self.index_of_guessed_word].word
+            self.already_guessed.append(self.word)
+            self.already_guessed_colors.append(color)
 
             self.guess_count += 1
             self.xordle_player.logger.log_print("Next word: " + self.word)
             return self.word
 
         self.xordle_player.process_guess(self.word, color, self.guess_count, self.guessed, self.index_of_guessed_word)
-
-        self.already_guessed.append(self.word)
-        self.already_guessed_colors.append(color)
     
         self.index_of_guessed_word = self.xordle_player.guess_word_index(self.guess_count, self.guessed)
         self.word = self.xordle_player.words[self.index_of_guessed_word].word
+        self.already_guessed.append(self.word)
+        self.already_guessed_colors.append(color)
 
         self.guess_count += 1
         self.xordle_player.logger.log_print("Next word: " + self.word)
