@@ -25,14 +25,14 @@ class WordsFilter(Data):
 
             for i in range(5):
                 if (self.green1[i] != ""
-                    and self.green1[i] in self.words[index].word
-                    and self.green1[i] != self.words[index].word[i]):
+                        and self.green1[i] in self.words[index].word
+                        and self.green1[i] != self.words[index].word[i]):
                     self.remove_word_on_index(index)
                     removedp = True
                     break
                 elif (self.green2[i] != ""
-                      and self.green2[i] in self.words[index].word
-                      and self.green2[i] != self.words[index].word[i]):
+                        and self.green2[i] in self.words[index].word
+                        and self.green2[i] != self.words[index].word[i]):
                     self.remove_word_on_index(index)
                     removedp = True
                     break
@@ -52,13 +52,13 @@ class WordsFilter(Data):
         while index <= self.top:
             if guessed == 1:
                 if (self.words[index].word[i] != self.green1[i]
-                    and self.words[index].word[i] != self.green2[i]):
+                        and self.words[index].word[i] != self.green2[i]):
                     self.remove_word_on_index(index)
                 else:
                     index += 1
             elif guessed == 0:
                 if (self.words[index].word[i] == self.green1[i]
-                    or self.words[index].word[i] == self.green2[i]):
+                        or self.words[index].word[i] == self.green2[i]):
                     index += 1
                 else:
                     self.remove_word_on_index(index)
@@ -92,7 +92,7 @@ class WordsFilter(Data):
             removedp = False
             for character in ascii_lowercase:
                 if (self.yellow[character].at_least != 0
-                    and (character not in self.words[index].word)):
+                        and (character not in self.words[index].word)):
                     self.remove_word_on_index(index)
                     removedp = True
                     break
@@ -155,8 +155,8 @@ class WordsFilter(Data):
             removedp = False
             for i in range(5):
                 if (self.words[index].word[i] == gray_character
-                    and actual_green[i] != gray_character
-                    and gray_character not in actual_yellow):
+                        and actual_green[i] != gray_character
+                        and gray_character not in actual_yellow):
                     self.remove_word_on_index(index)
                     removedp = True
                     break

@@ -34,10 +34,9 @@ class player(Ranking, WordsFilter, ColorFilter):
 
         for i in range(5):
             if (color[i] == "0" and (word[i] in ascii_lowercase)
-                and (word[i] not in actual_colors["green"])
-                and (word[i] not in actual_colors["yellow"])
-                and (word[i] not in actual_colors["gray"])):
-
+                    and (word[i] not in actual_colors["green"])
+                    and (word[i] not in actual_colors["yellow"])
+                    and (word[i] not in actual_colors["gray"])):
                 actual_colors["gray"][i] = word[i]
 
         for i in range(5):

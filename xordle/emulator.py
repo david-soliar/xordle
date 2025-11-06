@@ -8,7 +8,7 @@ from .status import Status
 class XordleEmulator(EmulatorData):
     def __init__(self, xordle_index=None, words=None, clue_word=None, enable_logging=False):
         super().__init__(enable_logging=enable_logging)
-        
+
         if isinstance(xordle_index, int):
             xordle_index = xordle_index % 40000
             self.clue_word, self.emulator_word1, self.emulator_word2 = self.real_xordle_games[xordle_index]

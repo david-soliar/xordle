@@ -94,8 +94,7 @@ class Ranking(Data):
             super_index = self.only_special_word_index()
 
         if ((guess_count == 5 or guess_count == 6)
-            and ((guessed == 1 and self.top > 0 and self.top < 10)
-            or (guessed == 0 and super_index != -1))):
+                and ((guessed == 1 and self.top > 0 and self.top < 10) or (guessed == 0 and super_index != -1))):
             deciding_word_index = self.find_deciding_word_index(super_index)
             if deciding_word_index != -1:
                 return deciding_word_index
@@ -132,7 +131,7 @@ class Ranking(Data):
 
             for i in range(5):
                 if (self.words[index].word[i] == self.green1[i]
-                    or self.words[index].word[i] == self.green2[i]):
+                        or self.words[index].word[i] == self.green2[i]):
                     probability += 3
 
             if early_guess and self.words[index].unique_characters != 5:
@@ -159,13 +158,13 @@ class Ranking(Data):
                         else:
                             probability += 1
                     elif in_word > (self.yellow[character].at_least
-                                   + self.green1.count(character)
-                                   + self.green2.count(character)):
+                                    + self.green1.count(character)
+                                    + self.green2.count(character)):
                         if early_guess and guess_count > 3:
                             probability -= 1
                         else:
                             probability += 1
-                    if early_guess: # tu teoreitcky  and in_word > 0
+                    if early_guess:  # tu teoreitcky  and in_word > 0
                         for i in range(5):
                             if self.yellow[character].indexes[i] == 0:
                                 probability -= 0.5
@@ -174,8 +173,7 @@ class Ranking(Data):
                 max_probability = probability
                 good_return_this = index
 
-            if (probability == max_probability
-                and self.words[index].api_frequency > self.words[good_return_this].api_frequency):
+            if (probability == max_probability and self.words[index].api_frequency > self.words[good_return_this].api_frequency):
                 good_return_this = index
 
             if probability < min_probability and self.words[index].unique_characters == 5:

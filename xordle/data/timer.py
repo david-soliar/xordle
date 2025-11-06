@@ -3,6 +3,7 @@ import time
 
 timer_stats = dict()
 
+
 def timer(func):
     def wrapper(*args, **kwargs):
         start_time = time.time()
@@ -15,6 +16,7 @@ def timer(func):
 
         return result
     return wrapper
+
 
 def get_timer():
     return timer_stats

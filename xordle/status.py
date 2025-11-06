@@ -1,5 +1,6 @@
 from enum import Flag, auto
 
+
 class Status(Flag):
     IN_PROGRESS = auto()
     BONUS = auto()

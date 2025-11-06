@@ -27,6 +27,7 @@ class Data:
     def __iter__(self):
         yield from self.words
 
+
 class EmulatorData:
     __slots__ = ["words", "top", "logger", "real_xordle_games"]
 
@@ -42,6 +43,7 @@ class EmulatorData:
 
     def __iter__(self):
         yield from self.words
+
 
 @dataclass
 class Color:

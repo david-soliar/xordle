@@ -43,7 +43,7 @@ class XordleSolver():
                 self.guessed += 1
                 self.xordle_player.clean_after_good_guess(self.word, self.guessed)
 
-                #bonus
+                # bonus
                 if self.guess_count == 8:
                     self.guess_count -= 1
                     self.bonus = True
@@ -67,7 +67,7 @@ class XordleSolver():
         self.guess_count += 1
         self.xordle_player.logger.log_print("Next word: " + self.word)
         return self.word
-    
+
     def _finished_game_cleanup(self):
         self.xordle_player.logger.log_print(str(self.status))
         self.xordle_player.log_exec_time()
@@ -115,7 +115,7 @@ class XordleSolver():
                     guessed += 1
                     xordle_player.clean_after_good_guess(word, guessed)
 
-                    #bonus
+                    # bonus
                     if guess_count == 8:
                         guess_count -= 1
 
@@ -191,7 +191,7 @@ class XordleSolver():
                     guessed += 1
                     xordle_player.clean_after_good_guess(word, guessed)
 
-                    #bonus
+                    # bonus
                     if guess_count == 8:
                         guess_count -= 1
 
